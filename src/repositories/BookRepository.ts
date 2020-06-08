@@ -8,6 +8,6 @@ class BookRepository extends BaseRepository<IBookModel> {
     super(BookSchema);
   }
 }
-
+// Object can change value but it can't add property.
 Object.seal(BookRepository);
 export default BookRepository;

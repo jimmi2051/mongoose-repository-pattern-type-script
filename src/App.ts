@@ -7,10 +7,7 @@ class App {
   public app;
 
   constructor() {
-    // console.log("DEBUG ===>", APP_ID);
     this.app = express();
-    // connectDB();
-    // MyContext.connect();
     this.config();
   }
 
