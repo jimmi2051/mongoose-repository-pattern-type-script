@@ -16,7 +16,11 @@ class MyContext {
     this.mongooseConnection.once("open", () => {
       console.log("MongoDB Connected...");
     });
-    Mongoose.connect(MONGO_URI);
+    const options: any = {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    };
+    Mongoose.connect(MONGO_URI, options);
     this.mongooseInstance = Mongoose;
     return this.mongooseInstance;
   }
