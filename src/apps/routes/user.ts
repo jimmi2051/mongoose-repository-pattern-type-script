@@ -10,6 +10,7 @@ class UserRoutes {
   get routes() {
     const controller = this._userController;
     router.post("/signup", controller.signUp);
+    router.post("/signin", controller.signIn);
     router.get("/users", controller.retrieve);
     router.post("/users", controller.create);
     router.put("/users/:_id", controller.update);

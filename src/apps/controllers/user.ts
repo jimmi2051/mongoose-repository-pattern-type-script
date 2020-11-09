@@ -68,22 +68,25 @@ class UserController implements IBaseController<UserService> {
       res.send({ error: "error in your request" });
     }
   }
-  public signUp(req: express.Request, res: express.Response): void {
+
+  public signIn(req: express.Request, res: express.Response): void {
     try {
       const user: IUser = <IUser>req.body;
       const userService = new UserService();
-      userService.signUp(user, (error, result) => {
+      userService.signIn(user, (error, result) => {
+        console.log("error", error);
+        console.log("result", result);
         if (error) {
           res.statusCode = 500;
           res.send(error);
         } else {
-          if (result._id) {
-            res.send({
-              success: `Sign up success.`,
-            });
+          if (result.status) {
+            res.status(200);
+            res.send({ ...result });
           } else {
+            res.status(401);
             res.send({
-              error: `Sign up failed. ${result}`,
+              error: `Sign in failed. ${result.message}`,
             });
           }
         }
@@ -94,16 +97,16 @@ class UserController implements IBaseController<UserService> {
       res.send({ error: "error in your request" });
     }
   }
-  public signIn(req: express.Request, res: express.Response): void {
+  public signUp(req: express.Request, res: express.Response): void {
     try {
       const user: IUser = <IUser>req.body;
       const userService = new UserService();
-      userService.signIn(user, (error, result) => {
+      userService.signUp(user, (error, result) => {
         if (error) {
           res.statusCode = 500;
           res.send(error);
         } else {
-          if (result.access) {
+          if (result._id) {
             res.send({
               success: `Sign up success.`,
             });

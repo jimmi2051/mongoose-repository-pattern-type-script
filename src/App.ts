@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import routes from "./apps/routes";
 import cors from "cors";
 import BaseMiddleware from "./apps/middlewares/base";
+import AuthMiddleware from "./apps/middlewares/checkJwt";
 class App {
   public app;
 
