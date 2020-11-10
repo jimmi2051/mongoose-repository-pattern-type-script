@@ -2,7 +2,6 @@ import express = require("express");
 import BookService from "../../services/book";
 import IBaseController from "./interfaces/base/BaseController";
 import IBook from "../../entities/models/interfaces/IBook";
-
 class BookController implements IBaseController<BookService> {
   public create(req: express.Request, res: express.Response): void {
     try {

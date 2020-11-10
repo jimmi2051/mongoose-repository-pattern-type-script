@@ -12,6 +12,7 @@
     "object-literal-sort-keys": false,
     "no-console": false,
     "no-angle-bracket-type-assertion": false,
+    "no-string-literal": false,
     "variable-name": [
       true,
       "allow-leading-underscore",

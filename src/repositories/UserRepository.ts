@@ -7,6 +7,9 @@ class UserRepository extends BaseRepository<IUser> {
     super(UserChema);
   }
 
+  public findById(_id: string, callback: (error: any, result: IUser) => void) {
+    UserChema.findById(_id, callback).select("-password");
+  }
   public findOne(query: any, callback: (error: any, result: IUser) => void) {
     UserChema.findOne(query, callback);
   }

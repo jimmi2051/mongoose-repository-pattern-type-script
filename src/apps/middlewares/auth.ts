@@ -1,11 +1,7 @@
 import express = require("express");
-import moment = require("moment");
-import { getActualRequestDurationInMilliseconds } from "../../infastructures/Helpers";
-import chalk = require("chalk");
 import jwt = require("jsonwebtoken");
 import { JWT_KEY } from "../../infastructures/Constants";
 import UserService from "../../services/user";
-// import logger from "../../infastructures/Logger";
 class AuthMiddleware {
   public base(req: any, res: express.Response, next): any {
     let token: any =
@@ -42,18 +38,19 @@ class AuthMiddleware {
                   message: "User is not exist",
                 });
               } else {
-                // next();
-                console.log("result ==>", result);
+                req.user = result;
+                next();
               }
             });
-            next();
           }
         });
       } else {
-        return res.json({
+        res.status(401);
+        res.json({
           success: false,
           message: "Require bearer token",
         });
+        return res;
       }
     }
   }
