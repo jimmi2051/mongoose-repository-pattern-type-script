@@ -3,6 +3,8 @@ import * as bodyParser from "body-parser";
 import routes from "./apps/routes";
 import cors from "cors";
 import BaseMiddleware from "./apps/middlewares/base";
+import PermissionSchema from "./entities/schemas/Permission";
+import RoleSchema from "./entities/schemas/Role";
 class App {
   public app;
 
@@ -18,6 +20,35 @@ class App {
     this.app.use(new BaseMiddleware().base);
     // add routes
     this.app.use("/api/v1", routes);
+    // PermissionSchema.create(
+    //   { action: "create", resource: "book", enabled: true },
+    //   function (err, small) {
+    //     if (err) console.log("error ==>", err);
+    //     // saved!
+    //     console.log("haha ==>", small);
+    //   }
+    // );
+    RoleSchema.create(
+      {
+        enabled: true,
+        name: "user",
+        type: "normal",
+        permissions: [
+          {
+            _id: "5fac1cbc376c1926ae47ba82",
+            action: "create",
+            resource: "book",
+            enabled: true,
+            __v: 0,
+          },
+        ],
+      },
+      function (err, small) {
+        if (err) console.log("error ==>", err);
+        // saved!
+        console.log("haha ==>", small);
+      }
+    );
   }
 }
 

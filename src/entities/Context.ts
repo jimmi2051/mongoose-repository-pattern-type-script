@@ -1,6 +1,6 @@
 import Mongoose = require("mongoose");
 import { MONGO_URI } from "../infastructures/Constants";
-
+import PermissionSchema from "./schemas/Permission";
 class MyContext {
   public static mongooseConnection: Mongoose.Connection;
   public static mongooseInstance: any;
@@ -22,6 +22,7 @@ class MyContext {
     };
     Mongoose.connect(MONGO_URI, options);
     this.mongooseInstance = Mongoose;
+
     return this.mongooseInstance;
   }
 }
