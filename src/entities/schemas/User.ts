@@ -10,9 +10,8 @@ class UserSchema {
       username: { type: String, required: true, trim: true },
       password: { type: String, required: true },
       role: {
-        type: String,
-        default: "basic",
-        enum: ["basic", "supervisor", "admin"],
+        ref: "Role",
+        type: mongoose.Schema.Types.ObjectId,
       },
       accessToken: { type: String },
     });

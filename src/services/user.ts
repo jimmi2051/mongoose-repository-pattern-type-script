@@ -5,6 +5,7 @@ import IUserModel from "../entities/models/interfaces/IUser";
 import { hashPassword, validatePassword } from "../infastructures/Helpers";
 import jwt = require("jsonwebtoken");
 import { JWT_KEY } from "../infastructures/Constants";
+import RoleSchema from "../entities/schemas/Role";
 class UserService {
   constructor() {
     this._userRepository = new UserRepository();
@@ -67,6 +68,7 @@ class UserService {
               accessToken,
             });
           }
+          console.log("here ===>4");
         } else {
           callback(null, { status: false, message: "Account doesn't exist" });
         }
@@ -91,6 +93,12 @@ class UserService {
         if (res && res._id) {
           callback({ status: false, message: "User has already existed" }, {});
         } else {
+          const instanceRole = await RoleSchema.findOne({
+            enabled: true,
+            name: "user",
+            type: "normal",
+          });
+          item.role = instanceRole;
           item.password = await hashPassword(item.password);
           this._userRepository.create(item, callback);
         }

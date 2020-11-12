@@ -107,7 +107,7 @@ class RoleMiddleware {
       });
     } else {
       //    const permissionAny = ac.can(user.role).readOwn(resource)
-      const havePermission = detectAction(user.role, method, resource);
+      const havePermission = detectAction(user.roleType(), method, resource);
 
       if (havePermission) {
         console.log("1111");

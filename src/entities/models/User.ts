@@ -9,8 +9,11 @@ class User {
   get username(): string {
     return this._userModel.username;
   }
-  get role(): string {
-    return this._userModel.role;
+  get roleType(): string {
+    return this._userModel.role.type;
+  }
+  get roleName(): string {
+    return this._userModel.role.name;
   }
   get accessToken(): string {
     return this._userModel.accessToken;
